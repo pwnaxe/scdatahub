@@ -1,0 +1,9 @@
+{
+  "short_name": "SCDH",
+  "name": "SC DATA HUB",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
