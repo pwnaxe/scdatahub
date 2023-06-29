@@ -13,7 +13,7 @@ import {
 import { styled } from '@mui/material/styles';
 
 const GlassPaper = styled(Paper)(({ theme }) => ({
-  backgroundColor: 'rgba(53, 86, 155, 0.1)',
+  backgroundColor: 'rgba(221, 235, 255, 0.3)',
   backdropFilter: 'blur(10px) saturate(125%)',
   border: '1px solid rgba(255, 255, 255, 0.3)',
   boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
@@ -23,7 +23,7 @@ const GlassPaper = styled(Paper)(({ theme }) => ({
   transition: '0.5s',
 
   '&:hover': {
-    boxShadow: '0 8px 12px rgba(0, 0, 0, 0.1)',
+    boxShadow: '15 15px 22px rgba(0, 0, 0, 0.1)',
     transform: 'scale(1.01)',
   },
 }));
@@ -48,7 +48,7 @@ const Oferta = () => {
       buttonText: 'Dowiedz się więcej'
     },
     {
-      title: 'Zaawansowane API',
+      title: 'Zaawansowane API dla Twojego Biznesu',
       content: 'Nasze API pozwala na szybką i łatwą integrację z naszymi danymi, umożliwiając rozwój innowacyjnych rozwiązań.',
       buttonText: 'Przetestuj API'
     },
@@ -100,7 +100,7 @@ const Oferta = () => {
           onClose={() => handleDrawerToggle(index)}
         >
           <Box
-            sx={{ height: 400, width: 250, padding: 2 }}
+            sx={{ height: 300, width: 250, padding: 2 }}
             role="presentation"
             onClick={() => handleDrawerToggle(index)}
             onKeyDown={() => handleDrawerToggle(index)}

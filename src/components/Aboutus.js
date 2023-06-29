@@ -1,14 +1,33 @@
 import React from 'react';
 import { Box, Typography, Paper, Grid, Container } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { styled, keyframes } from '@mui/material/styles';
 
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
 
 const GlassPaper = styled(Paper)(({ theme }) => ({
-  backgroundColor: 'rgba(255, 255, 255, 0.1)',
-  backdropFilter: 'blur(5px)',
+  backgroundColor: 'rgba(221, 235, 255, 0.3)',
+  backdropFilter: 'blur(10px)',
   padding: theme.spacing(2),
   borderRadius: '10px',
   textAlign: 'center',
+}));
+
+const QRCode = styled('img')(({ theme }) => ({
+  width: '150px',
+  height: '150px',
+  margin: '20px auto',
+  transition: 'all 0.1s ease-in-out',
+
+  '&:hover': {
+    animation: `${rotate} 1s linear infinite`,
+  },
 }));
 
 const AboutUs = () => {
@@ -29,30 +48,30 @@ const AboutUs = () => {
         <Grid item xs={12} sm={6} md={4}>
           <GlassPaper elevation={3}>
             <Typography variant="h5" gutterBottom>
-              API dla Twojego Biznesu
+              Powiązania z SkyCash
             </Typography>
             <Typography>
-              Oferujemy zaawansowane API, które umożliwia firmom, przedsiębiorcom i innowatorom integrację z naszymi danymi miejskimi.
+              Jako część Grupy SkyCash, czerpiemy z bogatego doświadczenia w zakresie fintechu i oferujemy zaawansowane rozwiązania w zakresie danych miejskich.
             </Typography>
           </GlassPaper>
         </Grid>
         <Grid item xs={12} sm={6} md={4}>
           <GlassPaper elevation={3}>
             <Typography variant="h5" gutterBottom>
-              Doświadczenie i Współpraca
+              Współpraca z Bankami
             </Typography>
             <Typography>
-              Wspieramy się doświadczeniem naszej firmy matki, SkyCash. Jesteśmy otwarci na nowe partnerstwa i współprace.
+              Współpracujemy z renomowanymi bankami, takimi jak Pekao SA i mBank, w celu integracji naszych usług i oferowania innowacyjnych rozwiązań.
             </Typography>
           </GlassPaper>
         </Grid>
         <Grid item xs={12} sm={6} md={4}>
           <GlassPaper elevation={3}>
             <Typography variant="h5" gutterBottom>
-              Wsparcie Techniczne
+              Innowacyjne Projekty
             </Typography>
             <Typography>
-              Oferujemy pełne wsparcie techniczne naszym partnerom w procesie implementacji i korzystania z naszego API.
+              Zaangażowani w nowoczesne projekty, takie jak program automatycznego rozpoznawania rejestracji pojazdów na parkingach, współpracujemy ze środkami Unii Europejskiej.
             </Typography>
           </GlassPaper>
         </Grid>
@@ -63,6 +82,10 @@ const AboutUs = () => {
         <Typography variant="body1">
           Zeskanuj kod QR, aby dowiedzieć się więcej o naszych możliwościach i rozwiązaniach technologicznych.
         </Typography>
+        <QRCode
+          src="/assets/qr.png"
+          alt="QR Code"
+        />
       </Box>
     </Container>
   );
