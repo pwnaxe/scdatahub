@@ -1,19 +1,11 @@
-import React, { useState } from 'react';
-import {
-  Box,
-  Typography,
-  Paper,
-  Grid,
-  Container,
-  Button,
-  Drawer,
-  Card,
-  CardContent
-} from '@mui/material';
+import React, { useState, useEffect, useRef } from 'react';
+import { Box, Typography, Paper, Grid, Container, Button, CardContent } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import videoPath from '../assets/sky.mp4';
 
 const GlassPaper = styled(Paper)(({ theme }) => ({
   backgroundColor: 'rgba(221, 235, 255, 0.3)',
+  color: 'white',
   backdropFilter: 'blur(10px) saturate(125%)',
   border: '1px solid rgba(255, 255, 255, 0.3)',
   boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
@@ -28,39 +20,58 @@ const GlassPaper = styled(Paper)(({ theme }) => ({
   },
 }));
 
-const Oferta = () => {
-  const [drawerOpen, setDrawerOpen] = useState([false, false, false]);
-  const [rotated, setRotated] = useState([false, false, false]);
+const FlipCard = styled(Box)(({ flipped }) => ({
+  backgroundColor: 'transparent',
+  perspective: '1000px',
+  transform: flipped ? 'scale(2)' : 'none',
+  transition: 'transform 0.8s',
+}));
 
-  const handleDrawerToggle = (index) => {
-    const newDrawerOpen = [...drawerOpen];
-    const newRotated = [...rotated];
-    newDrawerOpen[index] = !newDrawerOpen[index];
-    newRotated[index] = !newRotated[index];
-    setDrawerOpen(newDrawerOpen);
-    setRotated(newRotated);
+const FlipCardInner = styled(Box)(({ flipped }) => ({
+  position: 'relative',
+  width: '100%',
+  height: '100%',
+  textAlign: 'center',
+  transition: 'transform 0.8s',
+  transformStyle: 'preserve-3d',
+  transform: flipped ? 'rotateY(180deg)' : 'none',
+}));
+
+const FlipCardFront = styled(Box)({
+  position: 'absolute',
+  width: '100%',
+  height: '100%',
+  backfaceVisibility: 'hidden',
+});
+
+const FlipCardBack = styled(Box)({
+  position: 'absolute',
+  width: '100%',
+  height: '100%',
+  backfaceVisibility: 'hidden',
+  backgroundColor: 'white',
+  transform: 'rotateY(180deg)',
+});
+
+const Oferta = () => {
+  const [flipped, setFlipped] = useState(false);
+  const videoRef = useRef(null);
+
+  const handleFlip = () => {
+    setFlipped(!flipped);
   };
 
-  const cards = [
-    {
-      title: 'Dostęp do Otwartych Danych',
-      content: 'Uzyskaj dostęp do szerokiej gamy otwartych danych miejskich, które mogą być wykorzystane w różnych aplikacjach i usługach.',
-      buttonText: 'Dowiedz się więcej'
-    },
-    {
-      title: 'Zaawansowane API dla Twojego Biznesu',
-      content: 'Nasze API pozwala na szybką i łatwą integrację z naszymi danymi, umożliwiając rozwój innowacyjnych rozwiązań.',
-      buttonText: 'Przetestuj API'
-    },
-    {
-      title: 'Wsparcie i Współpraca',
-      content: 'Nasz zespół ekspertów jest dostępny, aby pomóc w osiągnięciu Twoich celów biznesowych i technicznych.',
-      buttonText: 'Skontaktuj się z nami'
+  useEffect(() => {
+    if (flipped) {
+      videoRef.current.play();
+    } else {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
     }
-  ];
+  }, [flipped]);
 
   return (
-    <Container component="section" maxWidth="lg" sx={{ py: 8 }}>
+    <Container component="section" maxWidth="lg" sx={{ py: 8, mb: 25 }}>
       <Typography variant="h2" align="center">
         Nasza Oferta
       </Typography>
@@ -73,49 +84,63 @@ const Oferta = () => {
       </Box>
 
       <Grid container spacing={4} justifyContent="center">
-        {cards.map((card, index) => (
-          <Grid key={index} item xs={12} sm={6} md={4}>
-            <GlassPaper elevation={3} style={{
-              transform: rotated[index] ? 'rotateZ(90deg)' : 'none',
-            }}>
-              <Typography variant="h5" gutterBottom>
-                {card.title}
-              </Typography>
-              <Typography>
-                {card.content}
-              </Typography>
-              <Button variant="contained" color="primary" sx={{ mt: 2 }} onClick={() => handleDrawerToggle(index)}>
-                {card.buttonText}
-              </Button>
-            </GlassPaper>
-          </Grid>
-        ))}
+        <Grid item xs={12} sm={6} md={4}>
+          <FlipCard flipped={flipped}>
+            <FlipCardInner flipped={flipped}>
+              <FlipCardFront>
+                <GlassPaper elevation={3}>
+                  <Typography variant="h5" gutterBottom>
+                    Dostęp do Otwartych Danych
+                  </Typography>
+                  <Typography>
+                    Uzyskaj dostęp do szerokiej gamy otwartych danych miejskich, które mogą być wykorzystane w różnych aplikacjach i usługach.
+                  </Typography>
+                  <Button variant="contained" style={{ backgroundColor: 'white', color: 'black' }} sx={{ mt: 2 }} onClick={handleFlip}>
+                    Dowiedz się więcej
+                  </Button>
+                </GlassPaper>
+              </FlipCardFront>
+              <FlipCardBack>
+                <CardContent>
+                  <video width="100%" controls ref={videoRef}>
+                    <source src={videoPath} type="video/mp4" />
+                    Przepraszamy, Twoja przeglądarka nie wspiera filmów.
+                  </video>
+                  <Button variant="contained" style={{ backgroundColor: 'white', color: 'black' }} sx={{ mt: 2 }} onClick={handleFlip}>
+                    Wróć
+                  </Button>
+                </CardContent>
+              </FlipCardBack>
+            </FlipCardInner>
+          </FlipCard>
+        </Grid>
+        <Grid item xs={12} sm={6} md={4}>
+          <GlassPaper elevation={3}>
+            <Typography variant="h5" gutterBottom>
+              Zaawansowane API dla Twojego Biznesu
+            </Typography>
+            <Typography>
+              Nasze API pozwala na szybką i łatwą integrację z naszymi danymi, umożliwiając rozwój innowacyjnych rozwiązań.
+            </Typography>
+            <Button variant="contained" style={{ backgroundColor: 'white', color: 'black' }} sx={{ mt: 2 }}>
+              Przetestuj API
+            </Button>
+          </GlassPaper>
+        </Grid>
+        <Grid item xs={12} sm={6} md={4}>
+          <GlassPaper elevation={3}>
+            <Typography variant="h5" gutterBottom>
+              Wsparcie i Współpraca
+            </Typography>
+            <Typography>
+              Nasz zespół ekspertów jest dostępny, aby pomóc w osiągnięciu Twoich celów biznesowych i technicznych.
+            </Typography>
+            <Button variant="contained" style={{ backgroundColor: 'white', color: 'black' }} sx={{ mt: 2 }}>
+              Program Wsparcia
+            </Button>
+          </GlassPaper>
+        </Grid>
       </Grid>
-
-      {drawerOpen.map((isOpen, index) => (
-        <Drawer
-          key={index}
-          anchor="bottom"
-          open={isOpen}
-          onClose={() => handleDrawerToggle(index)}
-        >
-          <Box
-            sx={{ height: 300, width: 250, padding: 2 }}
-            role="presentation"
-            onClick={() => handleDrawerToggle(index)}
-            onKeyDown={() => handleDrawerToggle(index)}
-          >
-            <Card>
-              <CardContent>
-                <Typography variant="h5">Tytuł karty</Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Jakiś przykładowy tekst karty.
-                </Typography>
-              </CardContent>
-            </Card>
-          </Box>
-        </Drawer>
-      ))}
     </Container>
   );
 };

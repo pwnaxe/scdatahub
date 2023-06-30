@@ -13,6 +13,7 @@ const rotate = keyframes`
 
 const GlassPaper = styled(Paper)(({ theme }) => ({
   backgroundColor: 'rgba(221, 235, 255, 0.3)',
+  color: 'white',
   backdropFilter: 'blur(10px)',
   padding: theme.spacing(2),
   borderRadius: '10px',
