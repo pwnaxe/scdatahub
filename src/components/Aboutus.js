@@ -40,39 +40,45 @@ const AboutUs = () => {
 
       <Box sx={{ mt: 6, mb: 4 }}>
         <Typography variant="body1">
-          SC Data Hub jest innowacyjną spółką fintech specjalizującą się w udostępnianiu otwartych danych miejskich.
-          Nasza misja to promowanie transparentności i efektywności w korzystaniu z danych miejskich poprzez technologiczne rozwiązania.
+          SC Data Hub jest innowacyjną spółką fintech specjalizującą się w udostępnianiu otwartych danych miejskich. Nasza misja to promowanie transparentności i efektywności w korzystaniu z danych miejskich poprzez technologiczne rozwiązania.
         </Typography>
       </Box>
 
-      <Grid container spacing={4} justifyContent="center">
+      <Grid container spacing={4} justifyContent="center" alignItems="stretch">
         <Grid item xs={12} sm={6} md={4}>
           <GlassPaper elevation={3}>
             <Typography variant="h5" gutterBottom>
-              Powiązania z SkyCash
+              Kim jesteśmy?
             </Typography>
             <Typography>
-              Jako część Grupy SkyCash, czerpiemy z bogatego doświadczenia w zakresie fintechu i oferujemy zaawansowane rozwiązania w zakresie danych miejskich.
+              Jesteśmy częścią grupy SkyCash Poland S.A i czerpiemy z wieloletniego doświadczenia w zakresie
+              tworzenia innowacyjnych rozwiązań technologicznych. Z aplikacji SkyCash korzystają już miliony
+              Polaków, kupując codziennie bilety kolejowe, komunikacyjne czy płacąc za parkowanie lub
+              autostrady.
             </Typography>
           </GlassPaper>
         </Grid>
         <Grid item xs={12} sm={6} md={4}>
           <GlassPaper elevation={3}>
             <Typography variant="h5" gutterBottom>
-              Współpraca z Bankami
+              Cele i wartości
             </Typography>
             <Typography>
-              Współpracujemy z renomowanymi bankami, takimi jak Pekao SA i mBank, w celu integracji naszych usług i oferowania innowacyjnych rozwiązań.
+              Naszym nadrzędnym celem jest oferowanie społeczeństwu usług, które ułatwiają codzienne życie,
+              oszczędzając czas i pieniądze, a także redukując wpływ na środowisko.
+              Dążymy do ciągłego poprawiania efektywności zarządzania zasobami miejskimi oraz generowania
+              związanych z tym możliwości dla firm oraz instytucji publicznych.
             </Typography>
           </GlassPaper>
         </Grid>
         <Grid item xs={12} sm={6} md={4}>
           <GlassPaper elevation={3}>
             <Typography variant="h5" gutterBottom>
-              Innowacyjne Projekty
+              Współpracują z nami
             </Typography>
             <Typography>
-              Zaangażowani w nowoczesne projekty, takie jak program automatycznego rozpoznawania rejestracji pojazdów na parkingach, współpracujemy ze środkami Unii Europejskiej.
+              Naszymi partnerami są banki, firmy z sektora „mobility”, samorządy, fintechy oraz inne podmioty
+              świadczące usługi dla ludności lub tworzące rozwiązania z zakresu „Smart City”.
             </Typography>
           </GlassPaper>
         </Grid>

@@ -71,7 +71,7 @@ const Oferta = () => {
   }, [flipped]);
 
   return (
-    <Container component="section" maxWidth="lg" sx={{ py: 8, mb: 25 }}>
+    <Container component="section" maxWidth="lg" sx={{ py: 8, mb: 5 }}>
       <Typography variant="h2" align="center">
         Nasza Oferta
       </Typography>
@@ -83,7 +83,7 @@ const Oferta = () => {
         </Typography>
       </Box>
 
-      <Grid container spacing={4} justifyContent="center">
+      <Grid container spacing={4} justifyContent="center" alignItems="stretch" sx={{ mb: 10, }}>
         <Grid item xs={12} sm={6} md={4}>
           <FlipCard flipped={flipped}>
             <FlipCardInner flipped={flipped}>
@@ -93,7 +93,8 @@ const Oferta = () => {
                     Dostęp do Otwartych Danych
                   </Typography>
                   <Typography>
-                    Uzyskaj dostęp do szerokiej gamy otwartych danych miejskich, które mogą być wykorzystane w różnych aplikacjach i usługach.
+                    Uzyskaj dostęp do szerokiej gamy otwartych danych miejskich, które mogą być wykorzystane w
+                    różnych aplikacjach i usługach.
                   </Typography>
                   <Button variant="contained" style={{ backgroundColor: 'white', color: 'black' }} sx={{ mt: 2 }} onClick={handleFlip}>
                     Dowiedz się więcej
@@ -102,10 +103,16 @@ const Oferta = () => {
               </FlipCardFront>
               <FlipCardBack>
                 <CardContent>
-                  <video width="100%" controls ref={videoRef}>
-                    <source src={videoPath} type="video/mp4" />
-                    Przepraszamy, Twoja przeglądarka nie wspiera filmów.
-                  </video>
+                  <Typography variant="h5" gutterBottom>
+                    Jako część grupy SkyCash Poland, SC Data Hub posiada bezpośredni dostęp do API dostawców
+                    otwartych danych miejskich, takich jak:
+                    - miast oraz podmiotów prywatnych w zakresie realizacji usług elektronicznego zarządzania usługami
+                    parkowania -&gt; ponad 100 miast…
+                    - miast oraz przewoźników prywatnych w zakresie dostępu do elektronicznych systemów sprzedaży
+                    biletów komunikacyjnych -&gt; …. przewoźników komunikacji miejskiej
+                    - ogólnokrajowych i regionalnych przewoźników kolejowych w zakresie dostępu do elektronicznych
+                    systemów sprzedaży biletów kolejowych -&gt; …. przewoźników kolejowych
+                  </Typography>
                   <Button variant="contained" style={{ backgroundColor: 'white', color: 'black' }} sx={{ mt: 2 }} onClick={handleFlip}>
                     Wróć
                   </Button>
@@ -117,13 +124,13 @@ const Oferta = () => {
         <Grid item xs={12} sm={6} md={4}>
           <GlassPaper elevation={3}>
             <Typography variant="h5" gutterBottom>
-              Zaawansowane API dla Twojego Biznesu
+              API dla Twojego Biznesu
             </Typography>
             <Typography>
-              Nasze API pozwala na szybką i łatwą integrację z naszymi danymi, umożliwiając rozwój innowacyjnych rozwiązań.
+              W SC Data Hub opracowaliśmy wszechstronne rozwiązanie, które ułatwia integrację z obszernymi zestawami otwartych danych miejskich poprzez jedno, spójne API. Korzystając z naszego API, zyskasz możliwość wdrażania nowych usług i rozwiązań, dostosowanych do potrzeb Twojego biznesu.
             </Typography>
             <Button variant="contained" style={{ backgroundColor: 'white', color: 'black' }} sx={{ mt: 2 }}>
-              Przetestuj API
+              Schemat działania API
             </Button>
           </GlassPaper>
         </Grid>
@@ -141,7 +148,11 @@ const Oferta = () => {
           </GlassPaper>
         </Grid>
       </Grid>
-    </Container>
+      <video width="100%" controls ref={videoRef}>
+        <source src={videoPath} type="video/mp4" />
+        Przepraszamy, Twoja przeglądarka nie wspiera filmów.
+      </video>
+    </Container >
   );
 };
 

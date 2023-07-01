@@ -16,7 +16,7 @@ const Contact = () => {
 
       <Grid container spacing={2} justifyContent="center">
         <Grid item xs={12} sm={8} md={6}>
-          <Box component="form" noValidate autoComplete="off">
+          <Box component="form" noValidate autoComplete="off" sx={{ backgroundColor: 'white', padding: '20px', borderRadius: '10px' }}>
             <TextField fullWidth label="Imię i Nazwisko" margin="normal" variant="outlined" />
             <TextField fullWidth label="Adres e-mail" margin="normal" variant="outlined" />
             <TextField fullWidth label="Temat" margin="normal" variant="outlined" />
