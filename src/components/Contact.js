@@ -28,7 +28,7 @@ const Contact = () => {
               multiline
               rows={4}
             />
-            <Button variant="contained" color="primary" type="submit" sx={{ mt: 3 }}>
+            <Button variant="contained" type="submit" sx={{ mt: 3, backgroundColor: '#0087ce', color: 'white', '&:hover': { backgroundColor: '#0069a7' } }}>
               Wyślij wiadomość
             </Button>
           </Box>
