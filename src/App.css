@@ -43,3 +43,9 @@ body {
     opacity: 1;
   }
 }
+
+.zoom-out {
+  transform: scale(0.8);
+  opacity: 0.5;
+  transition: transform 0.8s, opacity 0.8s;
+}

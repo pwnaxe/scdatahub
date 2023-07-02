@@ -83,7 +83,9 @@ const Oferta = () => {
         </Typography>
       </Box>
 
-      <Grid container spacing={4} justifyContent="center" alignItems="stretch" sx={{ mb: 10, }}>
+      <Grid container spacing={4} justifyContent="center" alignItems="stretch" sx={{ mb: 10, }}
+        className={flipped ? 'zoom-out' : ''}
+      >
         <Grid item xs={12} sm={6} md={4}>
           <FlipCard flipped={flipped}>
             <FlipCardInner flipped={flipped}>
@@ -103,19 +105,21 @@ const Oferta = () => {
               </FlipCardFront>
               <FlipCardBack>
                 <CardContent>
-                  <Typography variant="h5" gutterBottom>
-                    Jako część grupy SkyCash Poland, SC Data Hub posiada bezpośredni dostęp do API dostawców
-                    otwartych danych miejskich, takich jak:
-                    - miast oraz podmiotów prywatnych w zakresie realizacji usług elektronicznego zarządzania usługami
-                    parkowania -&gt; ponad 100 miast…
-                    - miast oraz przewoźników prywatnych w zakresie dostępu do elektronicznych systemów sprzedaży
-                    biletów komunikacyjnych -&gt; …. przewoźników komunikacji miejskiej
-                    - ogólnokrajowych i regionalnych przewoźników kolejowych w zakresie dostępu do elektronicznych
-                    systemów sprzedaży biletów kolejowych -&gt; …. przewoźników kolejowych
-                  </Typography>
-                  <Button variant="contained" style={{ backgroundColor: 'white', color: 'black' }} sx={{ mt: 2 }} onClick={handleFlip}>
-                    Wróć
-                  </Button>
+                  <GlassPaper elevation={3} sx={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                    <div>
+                      <Typography variant="h8" gutterBottom>
+                        Jako część grupy SkyCash Poland, SC Data Hub zapewnia dostęp do API miejskich otwartych danych, w tym: <br />
+                        Danych z ponad 100 miast i firm prywatnych dotyczących zarządzania usługami parkowania.<br />
+                        Danych z miejskich i prywatnych przewoźników dotyczących systemów sprzedaży biletów komunikacyjnych.<br />
+                        Danych od ogólnokrajowych i regionalnych przewoźników kolejowych dotyczących systemów sprzedaży biletów.
+                      </Typography>
+                    </div>
+                    <div>
+                      <Button variant="contained" style={{ backgroundColor: 'white', color: 'black' }} sx={{ mt: 2 }} onClick={handleFlip}>
+                        Wróć
+                      </Button>
+                    </div>
+                  </GlassPaper>
                 </CardContent>
               </FlipCardBack>
             </FlipCardInner>
@@ -148,7 +152,7 @@ const Oferta = () => {
           </GlassPaper>
         </Grid>
       </Grid>
-      <video width="100%" controls ref={videoRef}>
+      <video width="100%" controls ref={videoRef} className={flipped ? 'zoom-out' : ''}>
         <source src={videoPath} type="video/mp4" />
         Przepraszamy, Twoja przeglądarka nie wspiera filmów.
       </video>
