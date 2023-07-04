@@ -5,6 +5,7 @@ import Top from './components/Top';
 import Aboutus from './components/Aboutus';
 import Offer from './components/Offer';
 import Contact from './components/Contact';
+import Logoswiper from './components/Logos'
 import Fotter from './components/Fotter';
 
 
@@ -21,6 +22,7 @@ function App() {
       <Aboutus />
       <Offer />
       <Contact />
+      <Logoswiper />
       <Fotter />
     </ThemeProvider>
   );

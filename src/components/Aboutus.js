@@ -47,38 +47,38 @@ const AboutUs = () => {
       <Grid container spacing={4} justifyContent="center" alignItems="stretch">
         <Grid item xs={12} sm={6} md={4}>
           <GlassPaper elevation={3}>
-            <Typography variant="h5" gutterBottom>
+            <Typography variant="h5" fontWeight={'bold'} gutterBottom>
               Kim jesteśmy?
             </Typography>
             <Typography>
-              Jesteśmy częścią grupy SkyCash Poland S.A i czerpiemy z wieloletniego doświadczenia w zakresie
-              tworzenia innowacyjnych rozwiązań technologicznych. Z aplikacji SkyCash korzystają już miliony
-              Polaków, kupując codziennie bilety kolejowe, komunikacyjne czy płacąc za parkowanie lub
-              autostrady.
+              Jesteśmy częścią grupy SkyCash Poland S.A. lidera w branży z ponad 80% udziałem w rynku płatności za parkingi za pomocą smartfonu i ponad 50% udziałem w rynku płatności za bilety miejskie. <br /><br />
+              Nasza innowacyjna platforma, SC DATA HUB, łączy biznes, administrację publiczną i technologię, współtworząc inteligentne miasta i efektywne rozwiązania biznesowe.
             </Typography>
           </GlassPaper>
         </Grid>
         <Grid item xs={12} sm={6} md={4}>
           <GlassPaper elevation={3}>
-            <Typography variant="h5" gutterBottom>
+            <Typography variant="h5" fontWeight={'bold'} gutterBottom>
               Cele i wartości
             </Typography>
             <Typography>
-              Naszym nadrzędnym celem jest oferowanie społeczeństwu usług, które ułatwiają codzienne życie,
+              Naszym nadrzędnym celem jest oferowanie społeczeństwu usług, które ułatwiają codzienne życie, przyspieszają innowacje,
               oszczędzając czas i pieniądze, a także redukując wpływ na środowisko.
+              <br /><br />
               Dążymy do ciągłego poprawiania efektywności zarządzania zasobami miejskimi oraz generowania
               związanych z tym możliwości dla firm oraz instytucji publicznych.
             </Typography>
           </GlassPaper>
         </Grid>
         <Grid item xs={12} sm={6} md={4}>
-          <GlassPaper elevation={3}>
-            <Typography variant="h5" gutterBottom>
-              Współpracują z nami
+          <GlassPaper elevation={3} sx={{ height: "90%" }} >
+            <Typography variant="h5" fontWeight={'bold'} gutterBottom sx={{ mb: 2 }}>
+              Współpraca z nami
             </Typography>
             <Typography>
-              Naszymi partnerami są banki, firmy z sektora „mobility”, samorządy, fintechy oraz inne podmioty
-              świadczące usługi dla ludności lub tworzące rozwiązania z zakresu „Smart City”.
+              Stworzyliśmy program partnerski dla miast, firm, organizacji które chcą współtworzyć przyszłość opartą na efektywnym wykorzystaniu danych.
+              <br /><br />
+              Wierzymy, że nasz sukces jest ściśle powiązany z sukcesem naszych partnerów. Zapraszamy do współtworzenia przyszłości opartej na efektywnym wykorzystaniu danych.
             </Typography>
           </GlassPaper>
         </Grid>
@@ -92,6 +92,7 @@ const AboutUs = () => {
         <QRCode
           src="/assets/qr.png"
           alt="QR Code"
+          sx={{ height: '30%', width: '30%', mt: 10 }}
         />
       </Box>
     </Container>

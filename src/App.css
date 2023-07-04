@@ -49,3 +49,8 @@ body {
   opacity: 0.5;
   transition: transform 0.8s, opacity 0.8s;
 }
+
+.slideImage {
+  width: auto;
+  height: 4rem;
+}
