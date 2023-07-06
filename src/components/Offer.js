@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Typography, Paper, Grid, Container, Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import videoPath from '../assets/Comp 1.mp4';
+import oferta from '../assets/diagram_DK.png';
+import { animateScroll as scroll, Events } from 'react-scroll';
 import { GoogleMap, LoadScript } from '@react-google-maps/api';
 
+
 const containerStyle = {
-  width: '100%',
-  height: '400px'
+  width: '40%',
+  height: '400px',
+  sx: { allingItems: 'center' },
 };
 
 const centerOfPoland = {
@@ -18,17 +21,22 @@ const centerOfPoland = {
 const GlassPaper = styled(Paper)(({ theme }) => ({
   backgroundColor: 'rgba(221, 235, 255, 0.3)',
   color: 'white',
-  backdropFilter: 'blur(10px) saturate(125%)',
-  border: '1px solid rgba(255, 255, 255, 0.3)',
-  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+  backdropFilter: 'blur(10px)',
   padding: theme.spacing(2),
   borderRadius: '10px',
   textAlign: 'center',
-  transition: '0.5s',
+  opacity: 1,
+  transform: 'translateY(150px)',
+  transition: 'opacity 1s, transform 3s',
+
+  '&.visible': {
+    opacity: 1,
+    transform: 'translateY(0)',
+  },
 
   '&:hover': {
-    boxShadow: '15 15px 22px rgba(0, 0, 0, 0.1)',
-    transform: 'scale(1.01)',
+    boxShadow: '0 0 20px 10px rgba(0, 0, 0, 0.1)',
+    transform: 'scale(1.05)',
   },
 }));
 
@@ -41,13 +49,51 @@ const Oferta = () => {
     setFullscreen(true);
   };
 
-  const handleBack = () => {
-    setExpandedCard(null);
-    setFullscreen(false);
-  };
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    Events.scrollEvent.register('begin', function () {
+      console.log('begin', arguments);
+    });
+
+    Events.scrollEvent.register('end', function () {
+      console.log('end', arguments);
+    });
+
+    const checkVisibility = () => {
+      const el = document.getElementById('aboutUsSection');
+      const rect = el.getBoundingClientRect();
+      if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+        setIsVisible(true);
+      }
+    };
+
+    window.addEventListener('scroll', checkVisibility);
+
+    return () => {
+      window.removeEventListener('scroll', checkVisibility);
+      Events.scrollEvent.remove('begin');
+      Events.scrollEvent.remove('end');
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!event.target.closest('.card-class')) {
+        setFullscreen(false);
+        setExpandedCard(null);
+      }
+    };
+
+    document.body.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.body.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
 
   return (
-    <Container component="section" maxWidth="lg" sx={{ mb: 5 }}>
+    <Container component="section" maxWidth="lg">
       <Typography variant="h2" align="center">
         Nasze Usługi
       </Typography>
@@ -58,15 +104,16 @@ const Oferta = () => {
         </Typography>
       </Box>
 
-      <Grid container spacing={4} justifyContent="center" alignItems="stretch" sx={{ mb: 10, display: isFullscreen ? 'none' : 'flex' }}>
+      <Grid container spacing={4} justifyContent="center" alignItems="stretch" sx={{ display: isFullscreen ? 'none' : 'flex' }}>
+
         {/* Card 1 */}
         <Grid item xs={12} sm={6} md={4}>
-          <GlassPaper elevation={3} sx={{ height: '90%' }}>
+          <GlassPaper elevation={3} sx={{ height: '90%' }} className={`card-class ${isVisible ? 'visible' : ''}`}>
             <Typography variant="h5" fontWeight={'bold'} gutterBottom>
-              Szeroki Wachlarz Danych
+              Zintegrowane i generyczne API
             </Typography>
             <Typography>
-              SC DATA HUB oferuje dostęp do rozległego wyboru otwartych danych miejskich. Z naszym wszechstronnym API, zdolnym do elastycznej wymiany danych, możesz przyspieszyć innowacje i ulepszać usługi, dostosowując je do potrzeb Twojej organizacji.
+              Nasze spójne API ułatwia integrację z obszernymi zestawami otwartych danych miejskich, umożliwiając wdrożenie nowych usług i rozwiązań dostosowanych do Twojego biznesu.
             </Typography>
             <Button variant="contained" style={{ backgroundColor: 'white', color: 'black' }} sx={{ mt: 2 }} onClick={() => handleFlip('card1')}>
               Dowiedz się więcej
@@ -76,30 +123,31 @@ const Oferta = () => {
 
         {/* Card 2 */}
         <Grid item xs={12} sm={6} md={4}>
-          <GlassPaper elevation={3} sx={{ height: '90%' }}>
+          <GlassPaper elevation={3} sx={{ height: '90%' }} className={`card-class ${isVisible ? 'visible' : ''}`}>
             <Typography variant="h5" fontWeight={'bold'} gutterBottom>
-              Zintegrowane i generyczne API
+              Szeroki zakres usług
             </Typography>
             <Typography>
-              Nasze spójne API ułatwia integrację z obszernymi zestawami otwartych danych miejskich, umożliwiając wdrożenie nowych usług i rozwiązań dostosowanych do Twojego biznesu.
+              SC DATA HUB oferuje dostęp do rozległego wyboru otwartych danych miejskich. Z naszym wszechstronnym API, zdolnym do elastycznej wymiany danych, możesz przyspieszyć innowacje i ulepszać usługi, dostosowując je do potrzeb Twojej organizacji.
             </Typography>
             <Button variant="contained" style={{ backgroundColor: 'white', color: 'black' }} sx={{ mt: 2 }} onClick={() => handleFlip('card2')}>
-              Dowiedz się więcej
+              Nasze kompleksowe rozwiązania
             </Button>
           </GlassPaper>
         </Grid>
 
         {/* Card 3 */}
         <Grid item xs={12} sm={6} md={4}>
-          <GlassPaper elevation={3} sx={{ height: '90%' }}>
+          <GlassPaper elevation={3} sx={{ height: '90%' }} className={`card-class ${isVisible ? 'visible' : ''}`}>
             <Typography variant="h5" fontWeight={'bold'} gutterBottom>
               Profesjonalne Wsparcie
             </Typography>
             <Typography>
+              Nasza wizja współpracy to partnerstwo oparte na wzajemnych korzyściach.
               Nasz zespół ekspertów jest dostępny, aby pomóc w osiągnięciu Twoich celów biznesowych i technicznych. Wspieramy w realizacji strategii i zapewniamy niezbędne narzędzia.
             </Typography>
             <Button variant="contained" style={{ backgroundColor: 'white', color: 'black' }} sx={{ mt: 2 }} onClick={() => handleFlip('card3')}>
-              Dowiedz się więcej
+              Jak możemy współpracować?
             </Button>
           </GlassPaper>
         </Grid>
@@ -107,63 +155,88 @@ const Oferta = () => {
 
       {/* Expanded Card */}
       {isFullscreen && (
-        <Grid container spacing={4} justifyContent="center" alignItems="stretch" sx={{ mb: 10 }}>
-          <Grid item xs={12}>
-            <GlassPaper elevation={3} sx={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-              <div>
-                {expandedCard === 'card1' && (
-                  <>
-                    <Typography variant="h5" gutterBottom>
-                      - Obsługujemy ponad 100 miast w Polsce w zakresie mobilnych płatności parkingowych, zarówno w strefach publicznych, jak i na prywatnych parkingach.
-                      <br /><br />
-                      - Współpracujemy z systemami komunikacji miejskiej w ok. 70 miastach, oferując różnorodne opcje zakupu biletów.
-                      <br /><br />
-                      - Nasze rozwiązania ułatwiają także zakup biletów autostradowych i kolejowych u 11 przewoźników, co stanowi 99% udziału w rynku transportu kolejowego dla pasażerów. <br /><br />
-                      Dążymy do wsparcia cyfrowego rozwoju społeczeństwa.
-                    </Typography>
-                    <Box sx={{ mt: 6 }}>
-                      <LoadScript googleMapsApiKey={'AIzaSyBdchwwEeyZHRGuUBZ1ZkkeAnukfgqR0WE'
-                      }>
-                        <GoogleMap
-                          mapContainerStyle={containerStyle}
-                          center={centerOfPoland}
-                          zoom={6}
-                        >
-                          { /* Możesz dodać tutaj dodatkowe komponenty, takie jak markery */}
-                        </GoogleMap>
-                      </LoadScript>
-                    </Box>
-                  </>
-                )}
+        <div
+          data-backdrop="true"
+          style={{
+            position: 'fixed',
+            top: '10%',
+            left: '10%',
+            width: '80%',
+            height: '70%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            zIndex: 1000,
+            padding: '2rem',
+          }}
+        >
+          <Grid container spacing={4} justifyContent="center" alignItems="stretch" sx={{ mb: 10 }}>
+            <Grid item xs={12}>
+              <GlassPaper elevation={3} sx={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                <div>
+                  {expandedCard === 'card1' && (
+                    <>
+                      <Typography variant="h4" fontWeight={'bold'} gutterBottom>
+                        Zintegrowane i Uniwersalne API
+                      </Typography>
+                      <Typography variant="h5" gutterBottom style={{ textAlign: 'justify' }}>
+                        Nasze zaawansowane API dostarcza szeroką gamę możliwości integracyjnych oraz dostępu do danych, co umożliwia efektywne wdrażanie innowacyjnych rozwiązań miejskich, które mają potencjał fundamentalnie przekształcić sposób prowadzenia działalności przez Twoją organizację, a także sposób wspierania społeczności lokalnych.
+                        <br /><br />
+                        Co więcej, nasz wyrafinowany model uniwersalnego API otwiera nowe horyzonty, pozwalając na szybką i sprawną integrację z nowymi zestawami danych, które stają się dostępne w naszym systemie. To oznacza, że możesz dynamicznie rozszerzać swoją ofertę, włączając do niej nowatorskie usługi, pozostając w awangardzie branży.
+                      </Typography>
+                      <img src={oferta} alt="oferta" style={{ width: '100%' }} />
+                    </>
+                  )}
 
-                {expandedCard === 'card2' && (
-                  <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-                    <Typography variant="h5" gutterBottom>
-                      Nasze API oferuje szerokie możliwości integracji i dostępu do danych, umożliwiając skuteczne wdrażanie nowych rozwiązań miejskich, które mogą zrewolucjonizować sposób, w jaki Twoja firma działa i wspiera społeczności lokalne.
-                    </Typography>
-                  </Box>
-                )}
 
-                {expandedCard === 'card3' && (
-                  <Typography variant="h5" gutterBottom>
-                    Nasze API jest łatwe w integracji, a nasi specjaliści oferują wsparcie techniczne na każdym etapie procesu - od planowania do wdrożenia. Dodatkowo oferujemy szereg szkoleń, zarówno online, jak i stacjonarnych, aby pomóc naszym partnerom efektywnie wykorzystywać naszą platformę.
-                  </Typography>
-                )}
-              </div>
-              <div>
-                <Button variant="contained" style={{ backgroundColor: 'white', color: 'black' }} sx={{ mt: 2 }} onClick={handleBack}>
-                  Wróć
-                </Button>
-              </div>
-            </GlassPaper>
+                  {expandedCard === 'card2' && (
+                    <>
+                      <Typography variant="h4" fontWeight={'bold'} gutterBottom>
+                        Szeroki zakres usług
+                      </Typography>
+                      <Typography variant="h6" gutterBottom style={{ textAlign: 'justify' }}>
+                        - <strong>Ponad 100</strong> miast w Polsce w zakresie mobilnych płatności parkingowych, zarówno w strefach publicznych, jak i na prywatnych parkingach.
+                        <br /><br />
+                        - <strong>Ponad 70</strong> miast, zintegrowanych pod względem zakupu biletów miejskich.
+                        <br /><br />
+                        - Nasze rozwiązania ułatwiają także zakup biletów autostradowych i kolejowych u <strong>11</strong> przewoźników, co stanowi <strong>99%</strong> udziału w rynku transportu kolejowego dla pasażerów.
+                        <br /><br />
+                        Dążymy do wsparcia cyfrowego rozwoju społeczeństwa.
+                      </Typography>
+                      <Box sx={{ mt: 6 }}>
+                        <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
+                          <GoogleMap
+                            mapContainerStyle={containerStyle}
+                            center={centerOfPoland}
+                            zoom={6}
+                          >
+                          </GoogleMap>
+                        </LoadScript>
+                      </Box>
+                    </>
+                  )}
+
+                  {expandedCard === 'card3' && (
+                    <>
+                      <Typography variant="h4" fontWeight={'bold'} gutterBottom>
+                        Profesjonalne Wsparcie
+                      </Typography>
+                      <Typography variant="h5" gutterBottom>
+                        Nasze API jest łatwe w integracji, a nasi specjaliści oferują wsparcie techniczne na każdym etapie procesu - od planowania do wdrożenia. Dodatkowo oferujemy szereg szkoleń, zarówno online, jak i stacjonarnych, aby pomóc naszym partnerom efektywnie wykorzystywać naszą platformę.
+                        <br /><br />
+                        Dostarczamy również materiały promocyjne wspierające działania naszych partnerów, a nasze długoterminowe, strategiczne podejście do współpracy pozwala osiągać wspólne cele.
+                        <br /><br />
+                        Wierzymy, że nasz sukces jest ściśle powiązany z sukcesem naszych partnerów. Zapraszamy do współtworzenia przyszłości opartej na efektywnym wykorzystaniu danych.
+                      </Typography>
+                    </>
+                  )}
+                </div>
+              </GlassPaper>
+            </Grid>
           </Grid>
-        </Grid>
+        </div>
       )}
-
-      <video width="100%" controls autoPlay>
-        <source src={videoPath} type="video/mp4" />
-        Przepraszamy, Twoja przeglądarka nie wspiera filmów.
-      </video>
     </Container>
   );
 };

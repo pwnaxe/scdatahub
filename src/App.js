@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Appbar from './components/Appbar';
 import Top from './components/Top';
 import Aboutus from './components/Aboutus';
 import Offer from './components/Offer';
@@ -18,6 +19,7 @@ const theme = createTheme({
 function App() {
   return (
     <ThemeProvider theme={theme}>
+      <Appbar />
       <Top />
       <Aboutus />
       <Offer />
