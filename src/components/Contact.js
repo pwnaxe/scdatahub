@@ -16,10 +16,16 @@ const Contact = () => {
 
       <Grid container spacing={2} justifyContent="center">
         <Grid item xs={12} sm={8} md={6}>
-          <Box component="form" noValidate autoComplete="off" sx={{ backgroundColor: 'white', padding: '20px', borderRadius: '10px' }}>
-            <TextField fullWidth label="Imię i Nazwisko" margin="normal" variant="outlined" />
-            <TextField fullWidth label="Adres e-mail" margin="normal" variant="outlined" />
-            <TextField fullWidth label="Temat" margin="normal" variant="outlined" />
+          <Box component="form" noValidate autoComplete="off" sx={{
+            py: 6,
+            backgroundColor: 'rgba(221, 235, 255, 0.3)',
+            backdropFilter: 'blur(10px)',
+            color: 'white',
+            padding: '20px', borderRadius: '10px'
+          }}>
+            <TextField fullWidth label="Imię i Nazwisko" margin="normal" variant="outlined" InputLabelProps={{ style: { color: 'white' } }} />
+            <TextField fullWidth label="Adres e-mail" margin="normal" variant="outlined" InputLabelProps={{ style: { color: 'white' } }} />
+            <TextField fullWidth label="Temat" margin="normal" variant="outlined" InputLabelProps={{ style: { color: 'white' } }} />
             <TextField
               fullWidth
               label="Wiadomość"
@@ -27,8 +33,9 @@ const Contact = () => {
               variant="outlined"
               multiline
               rows={4}
+              InputLabelProps={{ style: { color: 'white' } }}
             />
-            <Button variant="contained" type="submit" sx={{ mt: 3, backgroundColor: '#0087ce', color: 'white', '&:hover': { backgroundColor: '#0069a7' } }}>
+            <Button variant="contained" type="submit" sx={{ mt: 3, backgroundColor: '#2f3e63', color: 'white', '&:hover': { backgroundColor: '#0069a7' } }}>
               Wyślij wiadomość
             </Button>
           </Box>

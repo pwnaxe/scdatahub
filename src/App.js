@@ -1,14 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Appbar from './components/Appbar';
 import Top from './components/Top';
 import Aboutus from './components/Aboutus';
 import Offer from './components/Offer';
 import Contact from './components/Contact';
-import Logoswiper from './components/Logos'
+import Logoswiper from './components/Logos';
 import Fotter from './components/Fotter';
-
 
 const theme = createTheme({
   typography: {
@@ -17,15 +15,24 @@ const theme = createTheme({
 });
 
 function App() {
+  const [showContent, setShowContent] = useState(false);
+
+  const handleEnter = () => {
+    setShowContent(true);
+  };
+
   return (
     <ThemeProvider theme={theme}>
-      <Appbar />
-      <Top />
-      <Aboutus />
-      <Offer />
-      <Contact />
-      <Logoswiper />
-      <Fotter />
+      <Top onEnter={handleEnter} />
+      {showContent && (
+        <>
+          <Aboutus />
+          <Offer />
+          <Contact />
+          <Logoswiper />
+          <Fotter />
+        </>
+      )}
     </ThemeProvider>
   );
 }

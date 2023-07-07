@@ -5,18 +5,19 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Pagination, Autoplay } from 'swiper/modules';
 import { Typography } from '@mui/material';
+import Box from '@mui/material/Box';
 
 const App = () => {
   return (
-    <>
+    <Box sx={{ mb: 3 }}>
       <Typography variant="h2" align="center" sx={{ mt: 6, mb: 4 }}>
         Zaufali Nam
       </Typography>
       <Swiper
         grabCursor={true}
         centeredSlides={false}
-        spaceBetween={5} // Dodaje trochę przestrzeni między slajdami
-        loop={true} // Dodałem opcję loop
+        spaceBetween={5}
+        loop={true}
         autoplay={{
           delay: 600,
           disableOnInteraction: false,
@@ -44,7 +45,7 @@ const App = () => {
           ))
         }
       </Swiper >
-    </>
+    </Box>
   );
 };
 

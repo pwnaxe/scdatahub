@@ -1,35 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import Drawer from "@mui/material/Drawer";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
+import Logo from '../assets/Logo.png';
 
 export default function ResponsiveAppBar() {
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-
-  const handleDrawerOpen = () => {
-    setIsDrawerOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setIsDrawerOpen(false);
-  };
 
   const menuItems = ["O nas", "Oferta", "Zaufali Nam", "Kontakt"];
 
   return (
     <div>
-      <AppBar position="static" sx={{ backgroundColor: '#0087ce', color: 'white' }}>
+      <AppBar position="absolute" sx={{ backgroundColor: '#2f3e63', color: 'white' }}>
         <Toolbar>
+          <img src={Logo} alt="logo" style={{ width: 250 }} />
           <IconButton
             edge="start"
             color="inherit"
             aria-label="menu"
-            onClick={handleDrawerOpen}
             sx={{ mr: 2, display: { sm: "none" } }}
           >
             <MenuIcon />
@@ -43,15 +31,6 @@ export default function ResponsiveAppBar() {
           </div>
         </Toolbar>
       </AppBar>
-      <Drawer anchor="left" open={isDrawerOpen} onClose={handleDrawerClose}>
-        <List>
-          {menuItems.map((item, index) => (
-            <ListItem button key={index} onClick={handleDrawerClose}>
-              <ListItemText primary={item} />
-            </ListItem>
-          ))}
-        </List>
-      </Drawer>
     </div>
   );
 }

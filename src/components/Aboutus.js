@@ -66,8 +66,8 @@ const AboutUs = () => {
         </Typography>
       </Box>
 
-      <Grid container spacing={4} justifyContent="center" alignItems="stretch">
-        <Grid item xs={12} sm={6} md={4}>
+      <Grid container spacing={10} justifyContent="center" alignItems="stretch">
+        <Grid item xs={12} sm={6} md={5}>
           <GlassPaper elevation={3} sx={{ height: '90%' }} className={isVisible ? 'visible' : ''}>
             <Typography variant="h5" fontWeight={'bold'} gutterBottom>
               Kim jesteśmy?
@@ -78,7 +78,15 @@ const AboutUs = () => {
             </Typography>
           </GlassPaper>
         </Grid>
-        <Grid item xs={12} sm={6} md={4}>
+        <Grid item xs={12} sm={6} md={5}>
+          <img src="/assets/about.png" alt="aboutus1" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        </Grid>
+      </Grid>
+      <Grid container spacing={10} justifyContent="center" alignItems="stretch" sx={{ mb: 5, mt: 5, }}>
+        <Grid item xs={12} sm={6} md={5}>
+          <img src="/assets/about.png" alt="aboutus2" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        </Grid>
+        <Grid item xs={12} sm={6} md={5}>
           <GlassPaper elevation={3} sx={{ height: '90%' }} className={isVisible ? 'visible' : ''}>
             <Typography variant="h5" fontWeight={'bold'} gutterBottom>
               Cele i wartości
@@ -92,7 +100,9 @@ const AboutUs = () => {
             </Typography>
           </GlassPaper>
         </Grid>
-        <Grid item xs={12} sm={6} md={4}>
+      </Grid>
+      <Grid container spacing={10} justifyContent="center" alignItems="stretch">
+        <Grid item xs={12} sm={6} md={5}>
           <GlassPaper elevation={3} sx={{ height: "90%" }} className={isVisible ? 'visible' : ''}>
             <Typography variant="h5" fontWeight={'bold'} gutterBottom sx={{ mb: 2 }}>
               Współpraca z nami
@@ -104,8 +114,10 @@ const AboutUs = () => {
             </Typography>
           </GlassPaper>
         </Grid>
+        <Grid item xs={12} sm={6} md={5}>
+          <img src="/assets/about.png" alt="aboutus3" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        </Grid>
       </Grid>
-
       <Box sx={{ mt: 6, textAlign: 'center' }}>
         <Typography variant="h5" fontWeight={'bold'} gutterBottom sx={{ mb: 2 }}>
           Wiele usług jeden operator SC DATA HUB

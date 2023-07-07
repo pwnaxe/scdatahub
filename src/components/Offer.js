@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Box, Typography, Paper, Grid, Container, Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import oferta from '../assets/diagram_DK.png';
 import { animateScroll as scroll, Events } from 'react-scroll';
 import { GoogleMap, LoadScript } from '@react-google-maps/api';
+import handshake from '../assets/handshake.mp4';
 
 
 const containerStyle = {
@@ -43,6 +44,7 @@ const GlassPaper = styled(Paper)(({ theme }) => ({
 const Oferta = () => {
   const [isFullscreen, setFullscreen] = useState(false);
   const [expandedCard, setExpandedCard] = useState(null);
+  const videoRef = useRef();
 
   const handleFlip = (card) => {
     setExpandedCard(card);
@@ -185,7 +187,7 @@ const Oferta = () => {
                         <br /><br />
                         Co więcej, nasz wyrafinowany model uniwersalnego API otwiera nowe horyzonty, pozwalając na szybką i sprawną integrację z nowymi zestawami danych, które stają się dostępne w naszym systemie. To oznacza, że możesz dynamicznie rozszerzać swoją ofertę, włączając do niej nowatorskie usługi, pozostając w awangardzie branży.
                       </Typography>
-                      <img src={oferta} alt="oferta" style={{ width: '100%' }} />
+                      <img src={oferta} alt="oferta" style={{ width: '50%', height: '50%' }} />
                     </>
                   )}
 
@@ -200,11 +202,13 @@ const Oferta = () => {
                         <br /><br />
                         - <strong>Ponad 70</strong> miast, zintegrowanych pod względem zakupu biletów miejskich.
                         <br /><br />
-                        - Nasze rozwiązania ułatwiają także zakup biletów autostradowych i kolejowych u <strong>11</strong> przewoźników, co stanowi <strong>99%</strong> udziału w rynku transportu kolejowego dla pasażerów.
+                        - Obsługujemy <strong>aż 99% połączeń kolejowych</strong>, a nasze API pozwala na zakup biletów kolejowych, sprawdzenie rozkładów jazdy, a także dostęp do informacji o opóźnieniach i zmianach w planie podróży.
+                        <br /><br />
+                        Szybkie i intuicyjne płatności - Twoi klienci dokonują płatności za bilety autostradowe, nie tracąc czasu na szukanie portfela.
                         <br /><br />
                         Dążymy do wsparcia cyfrowego rozwoju społeczeństwa.
                       </Typography>
-                      <Box sx={{ mt: 6 }}>
+                      <Box sx={{ mt: 6, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
                           <GoogleMap
                             mapContainerStyle={containerStyle}
@@ -229,6 +233,20 @@ const Oferta = () => {
                         <br /><br />
                         Wierzymy, że nasz sukces jest ściśle powiązany z sukcesem naszych partnerów. Zapraszamy do współtworzenia przyszłości opartej na efektywnym wykorzystaniu danych.
                       </Typography>
+                      <video
+                        ref={videoRef}
+                        autoPlay
+                        style={{
+                          width: '70%',
+                          height: '50%',
+                          objectFit: 'cover',
+                          zIndex: -1,
+                        }}
+                        muted
+                      >
+                        <source src={handshake} type="video/mp4" />
+                        <p>Przepraszamy, Twoja przeglądarka nie obsługuje wideo.</p>
+                      </video>
                     </>
                   )}
                 </div>
