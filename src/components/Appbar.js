@@ -1,36 +1,81 @@
-import React from "react";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import Logo from '../assets/Logo.png';
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
+import Container from '@mui/material/Container';
+import MenuItem from '@mui/material/MenuItem';
+import Logo from '../assets/Logo.png'
 
-export default function ResponsiveAppBar() {
+const pages = ['O firmie', 'Oferta', 'Zaufali Nam', 'Kontakt'];
 
-  const menuItems = ["O nas", "Oferta", "Zaufali Nam", "Kontakt"];
+function ResponsiveAppBar() {
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
+
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
 
   return (
-    <div>
-      <AppBar position="absolute" sx={{ backgroundColor: '#2f3e63', color: 'white' }}>
-        <Toolbar>
-          <img src={Logo} alt="logo" style={{ width: 250 }} />
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2, display: { sm: "none" } }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <div sx={{ display: { xs: "none", sm: "block" } }}>
-            {menuItems.map((item, index) => (
-              <span key={index} style={{ marginLeft: 15, color: "white" }}>
-                {item}
-              </span>
+    <AppBar position="static" sx={{ bgcolor: "#2f3e63" }}>
+      <Container maxWidth="xl">
+        <Toolbar disableGutters>
+          <img src={Logo} alt="Logo" height={50} />
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+            <IconButton
+              onClick={handleOpenNavMenu}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: 'block', md: 'none' },
+              }}
+            >
+              {pages.map((page) => (
+                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{page}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            {pages.map((page) => (
+              <Typography
+                variant="button"
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: 'white', mx: 2, fontSize: 21, }}
+                key={page}
+              >
+                {page}
+              </Typography>
             ))}
-          </div>
+          </Box>
         </Toolbar>
-      </AppBar>
-    </div>
+      </Container>
+    </AppBar>
   );
 }
+
+export default ResponsiveAppBar;
