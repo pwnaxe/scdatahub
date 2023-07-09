@@ -27,12 +27,13 @@ function ResponsiveAppBar() {
     <AppBar position="static" sx={{ bgcolor: "#2f3e63" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <img src={Logo} alt="Logo" height={50} />
+          <img src={Logo} alt="Logo" height={40} />
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               onClick={handleOpenNavMenu}
+              sx={{ color: 'white' }}
             >
-              <MenuIcon />
+              <MenuIcon sx={{ fontSize: 50, }} />
             </IconButton>
             <Menu
               id="menu-appbar"
@@ -44,7 +45,7 @@ function ResponsiveAppBar() {
               keepMounted
               transformOrigin={{
                 vertical: 'top',
-                horizontal: 'left',
+                horizontal: 'center',
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
