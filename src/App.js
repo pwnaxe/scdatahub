@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import './App.css';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Hidden from '@mui/material/Hidden';
 import Top from './components/Top';
+import Topmobile from './components/Topmobile';
 import Aboutus from './components/Aboutus';
 import Offer from './components/Offer';
 import Contact from './components/Contact';
@@ -23,11 +25,16 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Top onEnter={handleEnter} />
+      <Hidden only={['xs']}>
+        <Top onEnter={handleEnter} />
+      </Hidden>
+      <Hidden only={['sm', 'md', 'lg', 'xl']}>
+        <Topmobile />
+      </Hidden>
       {showContent && (
         <>
           <Aboutus />
-          <Offer />
+          {/* <Offer /> */}
           <Contact />
           <Logoswiper />
           <Fotter />

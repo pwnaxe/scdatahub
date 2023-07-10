@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import intro from '../assets/intro.mp4';
@@ -8,6 +8,12 @@ const Top = ({ onEnter }) => {
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [showOverlay, setShowOverlay] = useState(true);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.volume = 0.5;
+    }
+  }, []);
 
   const handlePlayClick = () => {
     if (videoRef.current) {
