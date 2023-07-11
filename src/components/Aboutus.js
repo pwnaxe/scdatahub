@@ -122,9 +122,14 @@ const AboutUs = () => {
               Partnerstwo dla Przyszłości
             </Typography>
             <Typography>
-              Stworzyliśmy program partnerski dla miast, firm, organizacji które chcą współtworzyć przyszłość opartą na efektywnym wykorzystaniu danych.
+              Stworzyliśmy program partnerski dla miast, firm, organizacji które chcą współtworzyć <strong>przyszłość opartą na efektywnym wykorzystaniu danych.</strong>
               <br /><br />
-              Wierzymy, że nasz sukces jest ściśle powiązany z sukcesem naszych partnerów. Zapraszamy do współtworzenia przyszłości opartej na efektywnym wykorzystaniu danych. Nasza wizja współpracy to partnerstwo oparte na wzajemnych korzyściach. Dostarczamy również materiały promocyjne wspierające działania naszych partnerów, a nasze długoterminowe, strategiczne podejście do współpracy pozwala osiągać wspólne cele.
+              Wierzymy, że nasz sukces jest ściśle powiązany z sukcesem naszych partnerów.
+              <br />
+              Zapraszamy do współtworzenia przyszłości opartej na efektywnym wykorzystaniu danych.
+              <br /><br />
+              Nasza wizja współpracy to <strong>partnerstwo oparte na wzajemnych korzyściach.</strong>
+              Dostarczamy również materiały promocyjne wspierające działania naszych partnerów, a nasze długoterminowe, strategiczne podejście do współpracy pozwala osiągać wspólne cele.
             </Typography>
           </GlassPaper>
         </Grid>

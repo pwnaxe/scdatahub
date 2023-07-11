@@ -34,7 +34,7 @@ function App() {
       {showContent && (
         <>
           <Aboutus />
-          {/* <Offer /> */}
+          <Offer />
           <Contact />
           <Logoswiper />
           <Fotter />
