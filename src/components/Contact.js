@@ -4,6 +4,7 @@ import { Box, TextField, Button, Container, Typography, Grid } from '@mui/materi
 const Contact = () => {
   return (
     <Container component="section" maxWidth="lg" sx={{ py: 8 }}>
+      <div id="Contact"></div>
       <Typography variant="h2" align="center">
         Skontaktuj się z nami
       </Typography>

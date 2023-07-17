@@ -97,6 +97,7 @@ const Oferta = () => {
 
   return (
     <Container component="section" maxWidth="lg">
+      <div id="Offer"></div>
       <Typography variant="h2" align="center">
         Nasze Usługi
       </Typography>

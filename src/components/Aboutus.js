@@ -56,6 +56,7 @@ const AboutUs = () => {
 
   return (
     <Container component="section" maxWidth="lg" sx={{ py: 8, mt: 5 }} id="aboutUsSection">
+      <div id="Aboutus"></div>
       <Typography variant="h2" align="center">
         O firmie
       </Typography>

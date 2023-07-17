@@ -10,6 +10,7 @@ import Box from '@mui/material/Box';
 const App = () => {
   return (
     <Box sx={{ mb: 3 }}>
+      <div id="Logoswiper"></div>
       <Typography variant="h2" align="center" sx={{ mt: 6, mb: 4 }}>
         Zaufali Nam
       </Typography>

@@ -7,15 +7,16 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
+import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import Logo from '../assets/Logo.png'
-import { Link } from 'react-scroll';
+import Logo from '../assets/Logo.png';
+import { Link } from 'react-router-dom';
 
 const pages = [
-  { name: 'O firmie', id: 'Aboutus' },
-  { name: 'Oferta', id: 'Offer' },
-  { name: 'Zaufali Nam', id: 'Logoswiper' },
-  { name: 'Kontakt', id: 'Contact' },
+  { name: 'O firmie', path: '#about' },
+  { name: 'Oferta', path: '#offer' },
+  { name: 'Kontakt', path: '#contact' },
+  { name: 'Zaufali nam', path: '#clients' },
 ];
 
 function ResponsiveAppBar() {
@@ -30,16 +31,20 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar position="static" sx={{ bgcolor: "#2f3e63" }}>
+    <AppBar position="sticky" sx={{ backgroundColor: '#DDEBFF4D', color: 'white' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <img src={Logo} alt="Logo" height={40} />
+          <img src={Logo} alt="Logo" style={{ height: '50px', display: { xs: 'none', md: 'flex' } }} />
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
+              size="large"
+              aria-label="open navigation menu"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
               onClick={handleOpenNavMenu}
-              sx={{ color: 'white' }}
+              color="inherit"
             >
-              <MenuIcon sx={{ fontSize: 50, }} />
+              <MenuIcon />
             </IconButton>
             <Menu
               id="menu-appbar"
@@ -51,7 +56,7 @@ function ResponsiveAppBar() {
               keepMounted
               transformOrigin={{
                 vertical: 'top',
-                horizontal: 'center',
+                horizontal: 'left',
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
@@ -61,9 +66,9 @@ function ResponsiveAppBar() {
             >
               {pages.map((page) => (
                 <MenuItem key={page.name} onClick={handleCloseNavMenu}>
-                  <Link to={page.id} smooth={true}>
-                    <Typography textAlign="center">{page.name}</Typography>
-                  </Link>
+                  <Typography textAlign="center">
+                    <Link smooth to={page.path}>{page.name}</Link>
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -71,27 +76,13 @@ function ResponsiveAppBar() {
 
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <Link to={page.id} smooth={true} key={page.name}>
-                <Typography
-                  variant="button"
-                  sx={{
-                    my: 2,
-                    p: 2,
-                    color: 'white',
-                    mx: 2,
-                    fontSize: 21,
-                    cursor: 'pointer',
-                    '&:hover': {
-                      backgroundColor: 'rgba(221, 235, 255, 0.3)',
-                      color: 'white',
-                      backdropFilter: 'blur(10px)',
-                      borderRadius: '10px',
-                    },
-                  }}
-                >
-                  {page.name}
-                </Typography>
-              </Link>
+              <Button
+                key={page.name}
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: 'inherit', display: 'block' }}
+              >
+                <Link smooth to={page.path}>{page.name}</Link>
+              </Button>
             ))}
           </Box>
         </Toolbar>
